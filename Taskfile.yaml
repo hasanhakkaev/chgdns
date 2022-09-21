@@ -1,0 +1,15 @@
+version: '3'
+
+#vars:
+  #GIT_TAG:
+    #sh: git describe --tags --abbrev=0
+
+tasks:
+  run:
+    cmds:
+      - go run ./cmd/chgdns/main.go
+    silent: false
+  build:
+    cmds:
+      - GOOS=windows GOARCH=amd64 go build -ldflags="-X 'main.release={{.GIT_TAG}}'" -o ./bin/chgdns.exe ./cmd/chgdns/main.go
+    silent: false

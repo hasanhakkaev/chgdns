@@ -1,0 +1,25 @@
+/*package cmd
+
+import (
+	"github.com/dimiro1/banner"
+	"github.com/gookit/gcli/v3"
+	"io/ioutil"
+	"os"
+	"strings"
+)
+
+var rootOpts = struct {
+	h string
+	c string
+}{}
+
+// for test run: go build ./_examples/cliapp.go && ./cliapp
+func Execute() {
+	app := gcli.NewApp()
+	app.
+	bannerBytes, _ := ioutil.ReadFile("banner.txt")
+	banner.Init(os.Stdout, true, false, strings.NewReader(string(bannerBytes)))
+	app.Add(Get)
+	app.Run(nil)
+}
+*/

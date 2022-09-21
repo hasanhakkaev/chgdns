@@ -1,0 +1,53 @@
+---
+
+env:
+  - CGO_ENABLED=0
+  - GO111MODULE=auto
+
+before:
+  hooks:
+    - go mod tidy
+    - go mod download
+
+builds:
+  - id: binary
+    goos:
+      - windows
+    goarch:
+      - amd64
+    binary: chgdns
+    ldflags:
+      - -s -w -X github.com/hasanhakkaev/chgdns/cmd.GitVersion={{ .Version }} -X github.com/hasanhakkaev/chgdns/cmd.gitCommit={{ .ShortCommit }}  -X github.com/hasanhakkaev/chgdns/cmd.buildDate={{ .CommitDate }}
+    main: ./cmd/chgdns
+
+archives:
+  - replacements:
+      amd64: x86_64
+
+release:
+  github:
+    owner: hasanhakkaev
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^ci:'
+      - '^build:'
+      - 'README'
+      - '^Merge branch'
+      - '^Merge pull request'
+
+#brews:
+#  - name: chgdns
+#    tap:
+#      owner: hasanhakkaev
+#      name: homebrew-tap
+#      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
+#    folder: Formula
+#    goarm: 6
+#    homepage: https://github.com/hasanhakkaev/chgdns
+#    license: apache-2.0
+#    description: chgdns does something

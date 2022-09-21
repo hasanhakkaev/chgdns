@@ -1,0 +1,79 @@
+/*package cmd
+
+import (
+	"encoding/json"
+	"fmt"
+	"github.com/google/winops/powershell"
+	"github.com/gookit/gcli/v3"
+	"github.com/olekukonko/tablewriter"
+	"os"
+	"strconv"
+	"strings"
+)
+
+type NetInterface struct {
+	IfIndex int `json:"ifIndex"`
+}
+
+var getOpts = struct {
+	h       string
+	showErr bool
+}{}
+
+var Get = &gcli.Command{
+	Func:     getExecute,
+	name: "get",
+	Desc:     "This command list current DNS server settings",
+	Examples: `
+  {$binname} {$cmd} --id 12 -c val ag0 ag1
+`,
+	Config: func(c *gcli.Command) {
+		c.StrOpt(&getOpts.h, "help", "h", "value", "Shows this help")
+		c.BoolOpt(&getOpts.showErr, "err", "e", false, "display error example")
+	},
+}
+
+func getExecute(c *gcli.Command, _ []string) error {
+
+	if getOpts.showErr {
+		return c.Errorf("OO, An error has occurred!!")
+	}
+
+	var settings [][]string
+	settings = append(settings, getDnsSettings())
+	fmt.Println(settings)
+	table := tablewriter.NewWriter(os.Stdout)
+	table.SetHeader([]string{"InterfaceAlias", "Interface Index", "Address Family", "ServerAddresses"})
+	table.SetBorders(tablewriter.Border{Left: true, Top: false, Right: true, Bottom: false})
+	table.SetCenterSeparator("|")
+	table.AppendBulk(settings) // Add Bulk Data
+	table.Render()
+
+	return nil
+}
+
+// Returns the current DNS server settings
+func getDnsSettings() []string {
+	var NetInterface NetInterface
+
+	psCmdInt := `Get-NetAdapter -physical| Where-Object Status -eq 'up' | Select ifIndex | ConvertTo-Json`
+	out1, err := powershell.Command(psCmdInt, nil, nil)
+	if err != nil {
+		panic(err)
+	}
+	err = json.Unmarshal(out1, &NetInterface)
+	if err != nil {
+		panic(err)
+	}
+
+	psCmdDns := strings.Join([]string{"Get-DnsClientServerAddress -InterfaceIndex ", " -AddressFamily IPv4"}, strconv.Itoa(NetInterface.IfIndex))
+	out2, err := powershell.Command(psCmdDns, nil, nil)
+	if err != nil {
+		panic(err)
+	}
+	var arr []string
+	_ = json.Unmarshal(out2, &arr)
+	fmt.Println(arr)
+	return arr
+}
+*/
