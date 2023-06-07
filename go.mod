@@ -7,7 +7,7 @@ require (
 	github.com/charmbracelet/bubbletea v0.21.0
 	github.com/muesli/termenv v0.12.0
 	github.com/urfave/cli/v2 v2.25.5
-	github.com/yusufpapurcu/wmi v1.2.2
+	github.com/yusufpapurcu/wmi v1.2.3
 )
 
 require (
