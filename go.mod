@@ -6,14 +6,14 @@ require (
 	github.com/charmbracelet/bubbles v0.11.0
 	github.com/charmbracelet/bubbletea v0.21.0
 	github.com/muesli/termenv v0.12.0
-	github.com/urfave/cli/v2 v2.10.0
+	github.com/urfave/cli/v2 v2.25.5
 	github.com/yusufpapurcu/wmi v1.2.2
 )
 
 require (
 	github.com/charmbracelet/lipgloss v0.5.0 // indirect
 	github.com/containerd/console v1.0.3 // indirect
-	github.com/cpuguy83/go-md2man/v2 v2.0.1 // indirect
+	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
